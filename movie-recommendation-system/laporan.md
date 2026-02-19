@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Dwi Cahya Nurani
+# Laporan Proyek Machine Learning 
 
 ## Project Overview
 Dewasa ini, jumlah konten hiburan, khususnya film, berkembang semakin pesat seiring dengan pertumbuhan *platform streaming* digital seperti Netflix, Viu, Disney+, dan Amazon Prime Video. Ribuan judul baru ditambahkan setiap tahunnya, menciptakan tantangan tersendiri bagi pengguna dalam memilih konten yang sesuai dengan minat dan preferensi pribadi. Fenomena ini dikenal sebagai *information overload*, di mana banyaknya pilihan justru menyulitkan pengguna dalam mengambil keputusan.
@@ -45,7 +45,7 @@ Data yang digunakan dalam proyek sistem rekomendasi ini adalah **Movies & Rating
    Data ini terdiri dari 9742 film dengan 3 fitur/kolom, yaitu  `movieId` (numerik), `title` (objek/string), dan `genres` (objek/string). Data tidak mengandung *missing value*, tetapi terdapat 5 judul film yang terduplikat karena perbedaan pada kolom `genres`, sehingga `movieId` menjadi berbeda. 
 2. **Dataset `ratings.csv`** \
    Data ini terdiri dari 100.836 rating dengan 4 fitur/kolom, yaitu `userId` (numerik), `movieId` (numerik), `rating` (numerik/float), dan `timestamp` (numerik). Data tidak mengandung *missing value* dan nilai terduplikat. 
-   ![alt text](c300fda7-57c8-4ef1-9f75-235727037b76.png)
+   ![alt text](pic/c300fda7-57c8-4ef1-9f75-235727037b76.png)
    Rating berkisar antara 0,5 hingga 5, dengan peningkatan 0,5. Semakin tinggi nilai rating menandakan user semakin menyukai film, dengan rating yang paling banyak diberikan oleh user adalah 4. 
 
 ## Data Preparation
@@ -85,7 +85,7 @@ Pada proyek ini dikembangkan dua jenis model sistem rekomendasi.
        Dibuat fungsi yang menerima judul film sebagai input dan mengembalikan Top-N (default N=5) film yang paling mirip, tidak termasuk film input itu sendiri. Fungsi ini mencari film dengan skor kemiripan kosinus tertinggi terhadap film input.
     - <ins> Output </ins>: 
       Top-N rekomendasi film. Misalnya untuk film 'Red Dragon (2002)', rekomendasinya adalah 
-      ![alt text]({40E00B07-0237-4FA9-9B36-B3FC325F5BAC}.png)
+      ![alt text](pic/{40E00B07-0237-4FA9-9B36-B3FC325F5BAC}.png)
       Semua film yang direkomendasikan memiliki genre "Crime Mystery Thriller" sama seperti 'Red Dragon (2002)'.
     - <ins> Kelebihan </ins>: 
       - Dapat merekomendasikan item baru yang memiliki deskripsi fitur yang baik.
@@ -109,8 +109,8 @@ Pada proyek ini dikembangkan dua jenis model sistem rekomendasi.
        - Model dikompilasi dengan loss function BinaryCrossentropy (karena output sigmoid mirip probabilitas), optimizer Adam dengan learning rate 0.001, dan metrik RootMeanSquaredError.
        - Digunakan callback EarlyStopping untuk menghentikan training jika val_root_mean_squared_error tidak membaik selama 3 epoch, dan mengembalikan bobot terbaik.
        - Model dilatih menggunakan data latih (X_train, y_train) dengan ukuran batch 8, selama maksimal 100 epoch, dan divalidasi menggunakan data validasi (X_val, y_val). Training berhenti pada epoch ke-12 karena *early stopping* dengan metriks terakhir dan plot metriks sebagai berikut. 
-       ![alt text]({58A73F89-1C1B-4469-91D5-797556BF5C7E}.png)
-       ![alt text](0c1823a4-93eb-47a7-a95c-433de946b6dd.png)
+       ![alt text](pic/{58A73F89-1C1B-4469-91D5-797556BF5C7E}.png)
+       ![alt text](pic/0c1823a4-93eb-47a7-a95c-433de946b6dd.png)
        Hasil *modeling* menunjukkan bahwa model berhasil mempelajari pola dari data latih, sebagaimana tercermin dari penurunan kurva Train RMSE yang konsisten pada plot metrik. Meskipun demikian, kurva Val RMSE mengalami penurunan hanya pada epoch-epoch awal (sekitar epoch 0-2) sebelum akhirnya mendatar di sekitar nilai 0,1999. Perilaku Val RMSE yang mendatar ini, ditambah dengan adanya kesenjangan antara nilai akhir Train RMSE (0,1815) yang lebih rendah dibandingkan Val RMSE (0,1989), serta Train Loss (0,5911) yang lebih rendah dari Val Loss (0,6057), mengindikasikan terjadinya gejala *overfitting*. 
      - Pembuatan Fungsi Rekomendasi 
        - Diambil satu userId secara acak kemudian diidentifikasi film-film yang sudah ditonton oleh pengguna tersebut.
@@ -119,8 +119,8 @@ Pada proyek ini dikembangkan dua jenis model sistem rekomendasi.
        - Direkomendasikan 10 film dengan prediksi rating tertinggi kepada pengguna.
    - <ins> Output </ins>: \
      Top-10 rekomendasi film untuk pengguna yang dipilih, beserta daftar film favorit pengguna tersebut (dengan rating tertinggi). Misalnya hasil rekomendasi untuk user dengan ID 534 berikut.
-     ![alt text]({45FE626D-C963-40E5-940A-51FF2240D68D}.png)
-     ![alt text]({4B418F7A-0959-4E0F-85F1-C73E78A728BA}.png)
+     ![alt text](pic/{45FE626D-C963-40E5-940A-51FF2240D68D}.png)
+     ![alt text](pic/{4B418F7A-0959-4E0F-85F1-C73E78A728BA}.png)
    - <ins> Kelebihan </ins>: 
      - Mampu menangkap pola dan preferensi yang kompleks dari interaksi pengguna-item.
      - Tidak bergantung pada fitur item secara eksplisit (dapat menemukan *serendipity*).
