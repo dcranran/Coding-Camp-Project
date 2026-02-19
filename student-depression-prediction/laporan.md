@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Dwi Cahya Nurani
+# Laporan Proyek 
 
 ## Domain Proyek
 Masa sekolah, khususnya perkuliahan, merupakan periode transisi dalam kehidupan seorang individu. Siswa dihadapkan pada berbagai tantangan baru, mulai dari tuntutan akademik yang tinggi, adaptasi dengan lingkungan sosial yang baru, tekanan finansial, hingga ekspektasi akan masa depan. Kombinasi dari tekanan-tekanan ini menjadikan siswa sebagai kelompok yang rentan mengalami masalah kesehatan mental, salah satunya adalah depresi.
@@ -59,13 +59,13 @@ Untuk memahami data lebih dalam, beberapa langkah Exploratory Data Analysis (EDA
    Data yang digunakan terdiri dari 27.901 baris data dan 18 kolom fitur. Data awal terdiri dari 9 variabel kategorik dan 9 variabel numerik. Data tidak mengandung missing value dan tidak terdapat data terduplikat. 
 2. **Distribusi Data** 
    - <ins> Histogram Variabel Numerik </ins> \
-   ![alt text](65b9355b-0d9d-4cf5-bcd4-e0e5d7a94b4a.png)
+   ![alt text](pic/65b9355b-0d9d-4cf5-bcd4-e0e5d7a94b4a.png)
      Secara keseluruhan, histogram di atas memberikan gambaran mengenai distribusi berbagai variabel numerik dalam dataset. Garis-garis vertikal menunjukkan Kuartil 1 (Q1), Median (Q2), Kuartil 3 (Q3), dan Rata-rata (Mean). Dari histogram dapat diketahui bahwa dataset mencakup siswa dengan rentang usia 18-30 tahun. Banyak variabel seperti tekanan akademik dan kepuasan studi menggunakan skala rating.Faktor pekerjaan (tekanan dan kepuasan) tidak relevan bagi sebagian besar sampel, karena mayoritas siswa tidak bekerja. Kemudian, IPK dan jam belajar menunjukkan pola yang bervariasi di antara siswa. 
    - <ins> Bar Chart Variabel Kategorik </ins> \
-   ![alt text](694acc2c-7fe1-40a1-aa8e-ff0daccf3cb4.png)
+   ![alt text](pic/694acc2c-7fe1-40a1-aa8e-ff0daccf3cb4.png)
      Secara keseluruhan, bar chart di atas menggambarkan distribusi frekuensi dari berbagai variabel kategori dalam dataset. Dari bar chart dapat diketahui bahwa dataset didominasi oleh siswa kelas 12 dengan distribusi gender yang cukup seimbang dan berasal dari berbagai kota. Banyak siswa mengalami kekurangan tidur, kebiasaan makan yang kurang baik, stres finansial, dan yang paling mencolok, tingginya prevalensi ideasi bunuh diri serta riwayat keluarga dengan penyakit mental.
 3. **Korelasi Antar Variabel Numerik** \
-   ![alt text](7955f4d9-ebc1-4922-8d3d-ab18d8949001.png)
+   ![alt text](pic/7955f4d9-ebc1-4922-8d3d-ab18d8949001.png)
    Berdasarkan heatmap di atas, terlihat tidak ada hubungan linear yang kuat antara sebagian besar  variabel, kecuali antara `Work Pressure` dan `Job Satisfaction`. Hal ini menunjukkan bahwa untuk memahami hubungan yang lebih kompleks (non-linear) mungkin diperlukan teknik analisis yang lebih canggih atau pertimbangan interaksi antar variabel, karena korelasi linear sederhana tidak banyak memberikan informasi.
 
 ## Data Preparation
@@ -90,7 +90,7 @@ Untuk memahami data lebih dalam, beberapa langkah Exploratory Data Analysis (EDA
 4. **Feature Scaling** \
    Tahap ini bertujuan untuk menyeragamkan rentang nilai fitur-fitur numerik, yaitu `Age`, `CGPA`, dan `Work/Study Hours`. Metode yang akan digunakan adalah StandardScaler, yang mengubah data sehingga memiliki rata-rata 0 dan standar deviasi 1. Scaling dilakukan setelah membagi data menjadi data train (80%) dan data test (20%) untuk menghindari *data leakage*. 
 5. **Imbalance Handling** \
-   ![alt text](67d696c1-966f-4802-8dcb-1c7ea8721724.png)
+   ![alt text](pic/67d696c1-966f-4802-8dcb-1c7ea8721724.png)
    Dari proses EDA diketahui bahwa distribusi kelas pada variabel target tidak seimbang. Jika dataset tidak seimbang, model cenderung menjadi bias terhadap kelas mayoritas dan memiliki performa yang buruk dalam memprediksi kelas minoritas. Oleh karena itu, akan dilakukan penanganan dengan metode SMOTETomek yang merupakan teknik *resampling* gabungan antara SMOTE (Synthetic Minority Over-sampling Technique) dan Tomek Links. Teknik ini hanya diterapkan pada data train untuk mencegah *data leakage*. Diperoleh hasil sebagai berikut:
 
    > Distribusi kelas sebelum penanganan: \
@@ -195,7 +195,7 @@ Setelah melatih model regresi logistik terbaik pada seluruh data train, tahap te
 1. **Classification Report**\
 Diperoleh hasil *Classification Report* sebagai berikut.
 
-   ![alt text]({1138AE1A-59F1-462F-BAC0-15B70D2CDC86}.png)
+   ![alt text](pic/{1138AE1A-59F1-462F-BAC0-15B70D2CDC86}.png)
 
    - Performa pada Kelas 1 (Mahasiswa Depresi)\
      - <ins> Recall (0,87) </ins>: Model berhasil mengidentifikasi 87% dari semua mahasiswa yang sebenarnya mengalami depresi di dalam data uji. Hasil ini cukup baik dan menunjukkan model cukup efektif dalam "menemukan" kasus depresi dan meminimalkan jumlah kasus yang terlewat (*False Negative*).
@@ -213,7 +213,7 @@ Diperoleh hasil *Classification Report* sebagai berikut.
 
 2. **Confusion Matrix** 
 
-   ![alt text](2129a44a-b47a-42be-8b0b-0cb15342419e.png)
+   ![alt text](pic/2129a44a-b47a-42be-8b0b-0cb15342419e.png)
    
    Berdasarkan *Confusion Matrix* dapat diketahui bahwa:
    - Model dengan benar memprediksi 1896 mahasiswa sebagai Tidak Depresi (*True Negative*).
@@ -225,7 +225,7 @@ Diperoleh hasil *Classification Report* sebagai berikut.
 
 3. **SHAP Summary Plot** \
    Untuk menjawab *goal* kedua, digunakan SHAP summary plot. SHAP (SHapley Additive exPlanations) values membantu dalam memahami bagaimana setiap fitur memengaruhi prediksi yang dibuat oleh model *machine learning*.
-   ![alt text](02a82c4e-8834-491d-87b8-8c906f8608bf.png)
+   ![alt text](pic/02a82c4e-8834-491d-87b8-8c906f8608bf.png)
    
    Berdasarkan plot ini, dapat diidentifikasi faktor-faktor risiko paling signifikan sebagai berikut (faktor ditulis dalam dari urutan paling signifikan):
    - <ins> Have you ever had suicidal thoughts? (Pikiran Bunuh Diri) </ins>
