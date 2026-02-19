@@ -1,4 +1,4 @@
-# Bike Sharing Dashboard
+# Interactive Dashboard for Analyzing Bike Sharing Demand Trends
 
 ## Setup Environment - Anaconda
 ```bash
